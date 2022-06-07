@@ -1,0 +1,228 @@
+if game.PlaceId == 3101667897 then --- Legends Of Speed script 
+getgenv().collectOrbsToggle = false;
+getgenv().autoHoops = false;
+getgenv().autoRebirth = false;
+
+
+function autohoops()
+spawn(function()
+    local oldcframe = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+    while wait() do
+        if not getgenv().autoHoops then break end
+            for _,v in pairs(game:GetService("Workspace").Hoops:GetChildren()) do
+          game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame
+    wait(0.2)
+    end
+    wait(0.2)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = oldcframe
+        end
+    end)
+end
+
+function autoOrbs()
+spawn(function()
+        local playerHead = game.Players.LocalPlayer.Character.Head  
+            while wait() do
+            if not getgenv().collectOrbsToggle then break end
+            for i, v in pairs(game:GetService("Workspace").orbFolder.City:GetDescendants()) do
+                if v.Name =="TouchInterest" and v.Parent then
+                    -- we will fire the touch event
+                    firetouchinterest(playerHead, v.Parent, 0)
+                    wait(0.001)
+                    break;
+                end
+            end
+        end
+    end)
+end
+
+function autoRebirth()
+    spawn(function()
+        while getgenv().autoRebirth == true do
+            local args = {
+                [1] = "rebirthRequest"}
+                game:GetService("ReplicatedStorage").rEvents.rebirthEvent:FireServer(unpack(args))
+            wait()
+        end
+    end)
+end
+
+function getCurrentPlayerPDS() 
+    local plyr = game.Players.LoaclPlayer;
+    if plyr.Character then
+     return plyr.Character.HumaninoidRootPart.Position;
+    end
+        return false;
+end
+
+function teleportTO(placeCFrame) 
+    local plyr = game.Players.LocalPlayer;
+    if plyr.Character then
+      plyr.Character.HumanoidRootPart.CFrame = placeCFrame;
+    end
+end
+function teleportWorld(world)
+        if game:GetService("Workspace").areaTeleportParts:FirstChild(world) then
+        teleportTO(game:GetService("Workspace").areaTeleportParts.Teleport.CFrame)
+    end
+end
+
+function AFK()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/2dgeneralspam1/scripts-and-stuff/master/scripts/LoadstringypVvhJBq4QNz", true))()
+end
+
+local library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/wall%20v3')))()
+
+local w = library:CreateWindow("Legends Of Speed") 
+
+local b = w:CreateFolder("Auto Farm") 
+
+
+b:Toggle("Auto Farm Orbs",function(bool)
+    getgenv().collectOrbsToggle  = bool
+    print("")
+    if bool then 
+        autoOrbs();
+    end
+end)
+
+b:Toggle("Auto Farm Rebirth",function(bool)
+    getgenv().autoRebirth = bool
+    print("")
+    if bool then 
+        autoRebirth();
+    end
+end)
+
+b:Toggle("Auto Farm Hoops",function(bool)
+    getgenv().autoHoops = bool
+    print("")
+    if bool then 
+        autohoops();
+    end
+end)
+
+local c = w:CreateFolder("Useful")
+
+c:Button("ANTI AFK", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/2dgeneralspam1/scripts-and-stuff/master/scripts/LoadstringypVvhJBq4QNz", true))()
+end)
+
+local d = w:CreateFolder("Islands")
+
+d:Button("cityToGrassCourse",function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1550.49, 45.8416, 87.482)
+    wait(0.001)
+end)
+
+d:Button("snowCityToPirateCourse",function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1611.52087, 28.3567181, 4939.54785, -0.999885678, -0.0151054701, 0.000700336299, -0.0151063642, 0.999885082, -0.00128957699, -0.00068077608, -0.00130000897, -0.999998927)
+    wait(0.001)
+end)
+
+
+d:Button("frostCourseToCity",function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-11053.6455, 231.440033, 4857.92236, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+    wait(0.001)
+end)
+
+d:Button("cityToFrostCourse",function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(2022.68054, 11.9846745, 984.478516, 0, 0, -1, 0, 1, 0, 1, 0, 0)
+    wait(0.001)
+end)
+
+d:Button("Cave",function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-9683.04883, 74.3799896, 3751.1272, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+    wait(0.001)
+end)
+
+d:Button("infernoCave",function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-153.072937, 15.8799839, 2566.85327, 0, 0, 1, 0, 1, -0, -1, 0, 0)
+    wait(0.001)
+end)
+
+d:Button("rebirth",function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-575.988892, 16.7000027, 390.565613, 0.939700544, -0, -0.341998369, 0, 1, -0, 0.341998369, 0, 0.939700544)
+    wait(0.001)
+end)
+
+d:Button("parkourToCity",function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-336.708649, 84.6497803, -239.163483, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+    wait(0.001)
+end)
+
+d:Button("CaveCity",function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-753.824402, 17.5500031, 549.088013, 0.642763317, -0, -0.766064942, 0, 1, -0, 0.766064942, 0, 0.642763317)
+    wait(0.001)
+end)
+
+d:Button("infernoCave",function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1616.82703, 14.2799845, 4330.65234, 0, 0, -1, 0, 1, 0, 1, 0, 0)
+    wait(0.001)
+end)
+
+d:Button("SnowCity",function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-898.168884, 25.5039082, 2803.85962, 0.642763317, -0, -0.766064942, 0, 1, -0, 0.766064942, 0, 0.642763317)
+    wait(0.001)
+end)
+
+d:Button("MagmaCity",function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(2460.56592, 14.2799845, 4707.23486, 0.642763317, 0, 0.766064942, 0, 1, 0, -0.766064942, 0, 0.642763317)
+    wait(0.001)
+end)
+
+d:Button("ParkourChallenge",function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1414.31213, 46.2416344, -2058.33667, 0, 0, -1, 0, 1, 0, 1, 0, 0)
+    wait(0.001)
+end)
+
+d:Button("ElectroCave",function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-13085.2598, 71.1799698, 4111.8252, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+    wait(0.001)
+end)
+
+d:Button("LegendsHighway",function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(3678.62549, 81.7799988, 5592.35254, 0, 0, -1, 0, 1, 0, 1, 0, 0)
+    wait(0.001)
+end)
+
+d:Button("cityToMysteriousCave",function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-9683.04883, 74.3799896, 3136.62695, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+    wait(0.001)
+end)
+
+d:Button("snowCityToInfernoCave",function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-11041.3574, 71.1799698, 4111.8252, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+    wait(0.001)
+end)
+
+d:Button("grassCourseToCity",function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-804.099976, 15.000001, 141.400024, -0.342042685, 0, -0.939684391, 0, 1, 0, 0.939684391, 0, -0.342042685)
+    wait(0.001)
+end)
+
+d:Button("mysteriousCaveToSnowCity",function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-866.386841, 15.8799839, 2165.70654, -0.499959469, 0, -0.866048813, 0, 1, 0, 0.866048813, 0, -0.499959469)
+    wait(0.001)
+end)
+
+local a = w:CreateFolder("Free GamePass,", "Passes only")
+
+a:Button("Passes only",function()
+    game.Players.LocalPlayer.UserId = "947838656"
+end)
+
+b:Label("Credits: 735c#2542",{
+    TextSize = 18;
+    TextColor = Color3.fromRGB(255,255,255);
+    BgColor = Color3.fromRGB(69,69,69); 
+    
+}) 
+a:DestroyGui()
+
+a:Label("Useless script",{
+    TextSize = 18;
+    TextColor = Color3.fromRGB(255,255,255);
+    BgColor = Color3.fromRGB(69,69,69);
+}) 
+end
